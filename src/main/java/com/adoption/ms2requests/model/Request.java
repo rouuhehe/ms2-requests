@@ -10,25 +10,31 @@ import java.util.UUID;
 @Data
 @Table(name="requests")
 public class Request {
+
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column(nullable = false)
-    private UUID userId;
+    private UUID userId; // FK a users.id
 
     @Column(nullable = false)
-    private UUID petId;
+    private UUID petId; // FK a pets.id (en MS1)
 
     @Column(nullable = false)
     private Instant requestDate;
 
-    @Column(nullable = false)
-    private String status;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 20)
+    private Status status;
 
     @Column(nullable = false)
     private Instant statusDate;
 
     @Column(nullable = false, columnDefinition = "TEXT")
     private String message;
+
+    public enum Status {
+        pending, approved, rejected
+    }
 }
