@@ -8,7 +8,7 @@ public record ApplicationView(
         UUID userId,
         UUID petId,
         Instant requestDate,
-        String status,
+        com.adoption.ms2requests.model.Request.Status status,
         Instant statusDate,
         String message
 ) {}

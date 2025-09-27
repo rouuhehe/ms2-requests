@@ -46,7 +46,7 @@ public class ApplicationService {
         r.setUserId(req.getUserId());
         r.setPetId(req.getPetId());
         r.setRequestDate(Instant.from(LocalDateTime.now()));
-        r.setStatus("pending");
+        r.setStatus(Request.Status.valueOf("pending"));
         r.setStatusDate(Instant.from(LocalDateTime.now()));
         r.setMessage(req.getMessage() != null ? req.getMessage() : "Your request is being processed.");
 
