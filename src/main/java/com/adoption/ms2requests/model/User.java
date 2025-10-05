@@ -3,7 +3,9 @@ package com.adoption.ms2requests.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import lombok.Data;
+import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.Type;
+import org.hibernate.type.SqlTypes;
 
 import java.util.UUID;
 
@@ -14,7 +16,7 @@ public class User {
     
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Type("uuid-char")
+    @JdbcTypeCode(SqlTypes.CHAR)
     @Column(length = 36, columnDefinition = "char(36)")
     private UUID id;
 

@@ -2,6 +2,9 @@ package com.adoption.ms2requests.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.annotations.Type;
+import org.hibernate.type.SqlTypes;
 
 import java.time.Instant;
 import java.util.UUID;
@@ -15,11 +18,11 @@ public class Request {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Type("uuid-char")
+    @JdbcTypeCode(SqlTypes.CHAR)
     @Column(nullable = false, length = 36, columnDefinition = "char(36)")
     private UUID userId;
 
-    @Type("uuid-char")
+    @JdbcTypeCode(SqlTypes.CHAR)
     @Column(nullable = false, length = 36, columnDefinition = "char(36)")
     private UUID petId;
 
