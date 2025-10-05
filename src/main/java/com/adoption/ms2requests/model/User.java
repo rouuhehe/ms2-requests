@@ -3,6 +3,7 @@ package com.adoption.ms2requests.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import lombok.Data;
+import org.hibernate.annotations.Type;
 
 import java.util.UUID;
 
@@ -10,9 +11,11 @@ import java.util.UUID;
 @Data
 @Table(name="users")
 public class User {
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Type("uuid-char")
+    @Column(length = 36, columnDefinition = "char(36)")
     private UUID id;
 
     @Column(nullable = false)

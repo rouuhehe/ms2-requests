@@ -15,11 +15,13 @@ public class Request {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(nullable = false)
-    private UUID userId; // FK a users.id
+    @Type("uuid-char")
+    @Column(nullable = false, length = 36, columnDefinition = "char(36)")
+    private UUID userId;
 
-    @Column(nullable = false)
-    private UUID petId; // FK a pets.id (en MS1)
+    @Type("uuid-char")
+    @Column(nullable = false, length = 36, columnDefinition = "char(36)")
+    private UUID petId;
 
     @Column(nullable = false)
     private Instant requestDate;
