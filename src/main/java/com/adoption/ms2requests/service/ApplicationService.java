@@ -4,7 +4,9 @@ import com.adoption.ms2requests.client.PetsClient;
 import com.adoption.ms2requests.dto.ApplicationRequest;
 import com.adoption.ms2requests.dto.ApplicationView;
 import com.adoption.ms2requests.model.Request;
+import com.adoption.ms2requests.model.User;
 import com.adoption.ms2requests.repo.RequestRepo;
+import com.adoption.ms2requests.repo.UserRepo;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -16,10 +18,12 @@ import java.util.stream.Collectors;
 public class ApplicationService {
     private final RequestRepo requests;
     private final PetsClient petsClient;
+    private final UserRepo userRepo;
 
-    public ApplicationService(RequestRepo requests, PetsClient petsClient) {
+    public ApplicationService(RequestRepo requests, PetsClient petsClient, UserRepo userRepo) {
         this.requests = requests;
         this.petsClient = petsClient;
+        this.userRepo = userRepo;
     }
 
     public List<ApplicationView> listByUser(UUID userId) {
@@ -66,4 +70,9 @@ public class ApplicationService {
                 r.getMessage()
         );
     }
+
+    public List<User> getAllUsers() {
+    return userRepo.findAll();
+    }
+
 }
