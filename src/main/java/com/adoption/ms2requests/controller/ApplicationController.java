@@ -27,19 +27,19 @@ public class ApplicationController {
         this.service = service;
     }
 
-    @GetMapping("/users")
+    @GetMapping("/ms2/users")
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = service.getAllUsers();
         return ResponseEntity.ok(users);
     }
 
 
-    @GetMapping("/{id}/requests")
+    @GetMapping("/ms2/{id}/requests")
     public ResponseEntity<List<ApplicationView>> list(@PathVariable("id") UUID userId) {
         return ResponseEntity.ok(service.listByUser(userId));
     }
 
-    @GetMapping("/{id}/requests/{applicationId}")
+    @GetMapping("/ms2/{id}/requests/{applicationId}")
     public ResponseEntity<ApplicationView> detail(@PathVariable("id") UUID userId,
                                                   @PathVariable UUID applicationId) {
         return service.detail(userId, applicationId)
@@ -47,7 +47,7 @@ public class ApplicationController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PostMapping("/requests")
+    @PostMapping("/ms2/requests")
     public ResponseEntity<ApplicationView> create(@RequestBody ApplicationRequest req) {
         try {
             ApplicationView view = service.create(req);
